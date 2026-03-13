@@ -2112,48 +2112,45 @@
 }
 
 .services-title {
-  margin: 0 0 clamp(1.4rem, 3.3vw, 2.5rem);
+  margin: 0 0 clamp(0.45rem, 1.4vw, 0.95rem);
 }
 
 .services-title span {
   position: relative;
   display: inline-block;
-  padding: 0.35rem 0.85rem 0.62rem 0.42rem;
+  padding: 1.15rem 1.35rem 1.45rem 1.15rem;
   color: #f78aaa;
   font-size: clamp(2.2rem, 4.2vw, 4.4rem);
   letter-spacing: 0.06em;
   line-height: 1;
+  z-index: 0;
 }
 
-.services-title span::before,
-.services-title span::after {
-  content: '';
+.services-title-scribble {
   position: absolute;
-  left: -0.72rem;
-  border: 4px solid #97fff6;
+  left: -1.78rem;
+  top: -0.42rem;
+  width: calc(100% + 3rem);
+  height: calc(100% + 2.4rem);
   pointer-events: none;
+  overflow: visible;
+  z-index: -1;
 }
 
-.services-title span::before {
-  top: -0.78rem;
-  width: calc(100% + 2.2rem);
-  height: 3.3rem;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  border-top-left-radius: 2.4rem;
-  border-top-right-radius: 2.8rem;
-  transform: rotate(2deg);
+.services-title-scribble-path {
+  fill: none;
+  stroke: #97fff6;
+  stroke-width: 4.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 980;
+  stroke-dashoffset: 980;
+  opacity: 0;
+  filter: drop-shadow(0 0 7px rgba(151, 255, 246, 0.24));
 }
 
-.services-title span::after {
-  bottom: -0.72rem;
-  width: calc(100% + 1.9rem);
-  height: 2.2rem;
-  border-top-color: transparent;
-  border-right-color: transparent;
-  border-bottom-left-radius: 2.6rem;
-  border-bottom-right-radius: 2.2rem;
-  transform: rotate(-8deg);
+.services-title.is-drawn .services-title-scribble-path {
+  animation: servicesTitleScribbleDraw 1.2s ease-out both;
 }
 
 .service-card-primary {
@@ -2628,21 +2625,19 @@
     padding: 0.2rem 0.5rem 0.36rem 0.28rem;
   }
 
-  .services-title span::before,
-  .services-title span::after {
-    border-width: 2px;
+  .services-title span {
+    padding: 0.82rem 0.88rem 1.1rem 0.78rem;
   }
 
-  .services-title span::before {
-    height: 2rem;
-    top: -0.42rem;
-    left: -0.4rem;
+  .services-title-scribble {
+    left: -1.18rem;
+    top: -0.04rem;
+    width: calc(100% + 2rem);
+    height: calc(100% + 1.5rem);
   }
 
-  .services-title span::after {
-    height: 1.4rem;
-    left: -0.35rem;
-    bottom: -0.42rem;
+  .services-title-scribble-path {
+    stroke-width: 3;
   }
 
   .service-eyebrow {
@@ -3063,30 +3058,39 @@
   position: relative;
 }
 
-.games-scribble::before,
-.games-scribble::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  border: 2px solid #92faff;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-radius: 999px;
+.games-scribble-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.games-scribble::before {
-  top: 0;
-  height: 0.62rem;
-  transform: rotate(0.6deg);
+.games-scribble-line {
+  fill: none;
+  stroke: #92faff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 6px rgba(146, 250, 255, 0.2));
+  opacity: 0;
 }
 
-.games-scribble::after {
-  bottom: 0;
-  height: 0.78rem;
-  width: 78%;
-  left: 27%;
-  transform: rotate(-2.3deg);
+.games-scribble-line-top {
+  stroke-dasharray: 850;
+  stroke-dashoffset: 850;
+}
+
+.games-scribble-line-bottom {
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+}
+
+.games-scribble.is-drawn .games-scribble-line-top {
+  animation: gamesScribbleDraw 1.05s ease-out forwards;
+}
+
+.games-scribble.is-drawn .games-scribble-line-bottom {
+  animation: gamesScribbleDraw 0.9s ease-out 0.18s forwards;
 }
 
 .games-section p {
@@ -4305,19 +4309,44 @@
   margin-top: 0.35rem;
   width: clamp(8.5rem, 22vw, 15rem);
   height: 1rem;
-  border-bottom: 3px solid #95fbf6;
-  border-radius: 50%;
   position: relative;
 }
 
-.case-scribble::after {
-  content: '';
-  position: absolute;
-  left: 0.2rem;
-  top: 0.95rem;
-  width: 2px;
-  height: 0.9rem;
-  background: #95fbf6;
+.case-scribble-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.case-scribble-arc,
+.case-scribble-tail {
+  fill: none;
+  stroke: #95fbf6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(149, 251, 246, 0.18));
+}
+
+.case-scribble-arc {
+  stroke-width: 3;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+}
+
+.case-scribble-tail {
+  stroke-width: 2.4;
+  stroke-dasharray: 18;
+  stroke-dashoffset: 18;
+}
+
+.case-scribble.is-drawn .case-scribble-arc {
+  animation: caseScribbleDraw 0.85s ease-out forwards;
+}
+
+.case-scribble.is-drawn .case-scribble-tail {
+  animation: caseScribbleDraw 0.38s ease-out 0.72s forwards;
 }
 
 .case-view-all {
@@ -4516,13 +4545,15 @@
 
   .case-scribble {
     width: 6.8rem;
-    border-bottom-width: 2px;
+    height: 0.78rem;
   }
 
-  .case-scribble::after {
-    width: 1px;
-    height: 0.5rem;
-    top: 0.6rem;
+  .case-scribble-arc {
+    stroke-width: 2.2;
+  }
+
+  .case-scribble-tail {
+    stroke-width: 1.7;
   }
 
   .case-view-all {
@@ -6628,6 +6659,52 @@
 
   50% {
     filter: drop-shadow(0 0 14px rgba(156, 249, 251, 0.6));
+  }
+}
+
+@keyframes servicesTitleScribbleDraw {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 980;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes gamesScribbleDraw {
+  0% {
+    opacity: 0;
+  }
+
+  14% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes caseScribbleDraw {
+  0% {
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
   }
 }
 

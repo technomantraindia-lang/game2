@@ -194,7 +194,9 @@ function HomePage() {
   const aboutSceneRef = useRef(null)
   const aboutStatsRef = useRef(null)
   const [aboutHeadingRef, hasPlayedAboutHeading] = useRevealOnIntersect(0.22)
+  const [servicesSectionRef, hasPlayedServicesAccent] = useRevealOnIntersect(0.22)
   const [gamesSectionRef, hasPlayedGamesAccent] = useRevealOnIntersect(0.28)
+  const [caseSectionRef, hasPlayedCaseAccent] = useRevealOnIntersect(0.24)
   const [testimonialsSectionRef, hasPlayedTestimonialsAccent] = useRevealOnIntersect(0.25)
   const [whySectionRef, hasPlayedWhyAccent] = useRevealOnIntersect(0.28)
   const [hasPlayedAboutScene, setHasPlayedAboutScene] = useState(false)
@@ -386,9 +388,17 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="services-section" id="services">
-        <h2 className="services-title">
-          <span>Services</span>
+      <section className="services-section" id="services" ref={servicesSectionRef}>
+        <h2 className={`services-title ${hasPlayedServicesAccent ? 'is-drawn' : ''}`}>
+          <span>
+            <svg className="services-title-scribble" viewBox="0 0 420 210" aria-hidden="true">
+              <path
+                className="services-title-scribble-path"
+                d="M112 28C66 24 36 42 28 88C20 142 48 190 122 194C169 196 205 177 236 149C272 118 313 96 365 98C394 99 405 109 405 121C405 138 383 147 354 147C309 147 255 130 194 122C149 116 115 120 88 134"
+              />
+            </svg>
+            Services
+          </span>
         </h2>
 
         <div className="service-card service-card-primary">
@@ -499,7 +509,12 @@ function HomePage() {
       <section className="games-section" id="genres" ref={gamesSectionRef}>
         <div className="games-head">
           <h2>Games We&apos;re Built to Create</h2>
-          <div className="games-scribble" aria-hidden="true" />
+          <div className={`games-scribble ${hasPlayedGamesAccent ? 'is-drawn' : ''}`} aria-hidden="true">
+            <svg className="games-scribble-svg" viewBox="0 0 860 82" preserveAspectRatio="none">
+              <path className="games-scribble-line games-scribble-line-top" d="M2 18C160 18 322 21 487 24C608 26 726 27 812 26" />
+              <path className="games-scribble-line games-scribble-line-bottom" d="M225 50C356 43 495 39 628 36C718 34 786 33 855 28" />
+            </svg>
+          </div>
         </div>
         <p>
           We work across genres from fast-paced action to thoughtful simulations. If it&apos;s playable, scalable, and fun, we&apos;re in.
@@ -526,11 +541,16 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="case-section" id="case-studies">
+      <section className="case-section" id="case-studies" ref={caseSectionRef}>
         <div className="case-head">
           <div className="case-title-wrap">
             <h2>Case Studies</h2>
-            <div className="case-scribble" aria-hidden="true" />
+            <div className={`case-scribble ${hasPlayedCaseAccent ? 'is-drawn' : ''}`} aria-hidden="true">
+              <svg className="case-scribble-svg" viewBox="0 0 240 32" preserveAspectRatio="none">
+                <path className="case-scribble-arc" d="M4 12C44 24 120 28 236 18" />
+                <path className="case-scribble-tail" d="M8 12V30" />
+              </svg>
+            </div>
           </div>
           <Button variant="case">
             View All
