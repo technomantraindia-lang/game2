@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Flat&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-heading: 'Nova Flat', 'Trebuchet MS', sans-serif;
+  --font-body: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
+  line-height: 1.4;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #000;
+}
+
+#root {
+  width: 100%;
+}
